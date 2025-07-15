@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
-
-const pool = new Pool({
+import { drizzle } from 'drizzle-orm/node-postgres';
+const client = new Pool({
   host: 'localhost',
   database: 'bucket',
   user: 'vegb',
@@ -8,11 +8,16 @@ const pool = new Pool({
   port: 5432,
 });
 
-pool.connect()
-  .then(() => {
-    console.log(' PostgreSQL connected successfully!');
-     
-  })
-  .catch((error:Error) => {
-    console.error(' PostgreSQL connection error:', error.message);
-  });
+client.connect()
+export const db= drizzle({
+  logger:{
+    logQuery(query, params) {
+        
+    },
+  },
+  client,
+  schema:{
+
+  }
+}
+)

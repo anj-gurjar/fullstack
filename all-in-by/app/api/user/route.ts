@@ -1,3 +1,4 @@
+import { userfind } from '@/app/core/user/user.service'
 import type { NextApiRequest, NextApiResponse } from 'next'
  
 type ResponseData = {
@@ -8,5 +9,13 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  res.status(200).json({ message: 'Hello from Next.js!' })
+if(req.method='GET'){
+ const data=userfind()
+ if(data){
+
+    res.status(200).json({ message: 'Hello from Next.js!' })
+ }
+   
+}
+  
 }
