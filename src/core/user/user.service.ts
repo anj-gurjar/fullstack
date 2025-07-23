@@ -1,14 +1,6 @@
-import { userFindAll } from "./user.dao"
+import { findAll } from "./user.dao";
 
-export const userfind=async  ()=>{
-    try{
-         const data=await userFindAll()
-
-    }
-    catch(error){
-
-    }
-   
-   
-
-}
+export const findAllUsers = async () => {
+  const users = await findAll();
+  return users;
+};

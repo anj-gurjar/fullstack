@@ -1,5 +1,14 @@
+import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { connectToDb } from "./utils/database";
 
-export const db = drizzle(process.env.DATABASE_URL!);
- connectToDb()
+const client = new Pool({
+  connectionString: process.env.DATABASE_URL!,
+});
+
+// await client.connect();
+console.log("Connected to database");
+
+export const db = drizzle({
+  logger: true,
+  client,
+});

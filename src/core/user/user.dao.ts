@@ -1,6 +1,6 @@
-import  {userTable}  from './user.schema'
-import {db} from '../../lib/database/db'
+import { userTable } from "./user.schema";
+import { db } from "../../database";
 
-export const userFindAll=async()=>{
-    db.select().from(userTable)
-}
+export const findAll = async () => {
+  return await db.select().from(userTable);
+};
