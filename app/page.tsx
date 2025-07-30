@@ -38,7 +38,7 @@ export default function HomePage() {
       <h1 className="text-4xl font-bold text-green-700 mb-2">Veggin 🥦</h1>
       <p className="mb-6">Fresh Vegetables, Fruits & Dry Fruits</p>
 
-      {/* About Section */}
+  
       <p className="mb-6">
         Welcome to <strong>Veggin</strong> – the simplest way to get fresh vegetables and fruits delivered to your doorstep.
       </p>

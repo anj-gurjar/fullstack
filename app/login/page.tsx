@@ -1,30 +1,34 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('/api/login', {
-      method: 'POST',
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
       body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
 
+    console.log(res); // Log the full response object
+
     if (res.ok) {
-      const data = await res.json();
-      localStorage.setItem('token', data.token); // For now
-      router.push('/dashboard');
+      const data = await res.json(); // Still parse JSON to get other potential messages or data
+      console.log("Login successful!", data); // Log the success data
+      // No localStorage.setItem("token", data.token);
+      router.push("/dashboard"); // Redirect to dashboard on success
     } else {
-      const err = await res.json();
-      setError(err.message || 'Login failed');
+      const err = await res.json(); // Parse error response from server
+      console.error("Login failed:", err); // Log the error data
+      setError(err.message || "Login failed"); // Display error message to user
     }
   };
 
@@ -37,7 +41,7 @@ export default function LoginPage() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full mb-4 px-4 py-2 border rounded"
             required
           />
@@ -45,11 +49,14 @@ export default function LoginPage() {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full mb-4 px-4 py-2 border rounded"
             required
           />
-          <button type="submit" className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+          <button
+            type="submit"
+            className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+          >
             Login
           </button>
         </form>

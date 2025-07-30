@@ -1,6 +1,6 @@
 // app/components/Header.tsx
-'use client';
-import Link from 'next/link';
+"use client";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -9,16 +9,16 @@ export default function Header() {
         🥦 VeggieMart
       </div>
       <nav className="space-x-6 font-medium">
-     
         <Link href="/products">Products</Link>
         <Link href="/contact">Contact Us</Link>
         <Link href="/login">Login</Link>
         <Link href="/register">Register</Link>
-        <Link href="/">Dashboard</Link>
-
+        <Link href="/">Home</Link>
       </nav>
       <div>
-        <span className="bg-white text-green-800 px-3 py-1 rounded-full">👤 Profile</span>
+        <span className="bg-white text-green-800 px-3 py-1 rounded-full">
+          👤 Profile
+        </span>
       </div>
     </header>
   );
